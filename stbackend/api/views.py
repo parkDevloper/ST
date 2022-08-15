@@ -7,7 +7,7 @@ from api.serializers import UserSerializer,FileSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from django.db import connection     #raw sql
-from django.conf import settings     #getting base_dir for audio
+
 
 
 
@@ -59,22 +59,16 @@ class FileView(APIView):
         print('ok1')
         print(serializer)
         if(serializer . is_valid()):
-            # serializer.save()
+            serializer.save()
             print('ok')
 
             cursor=connection.cursor()
             cursor.execute("select inputLang , outputLang ,audioFile from api_file WHERE id=(SELECT max(id) from api_file)")
             row = cursor.fetchall()
-            a=list(row)
-            b=list(a[0])
-
-            inputLang=b[0]
-            outputLang=b[1]
-            audioFileLink= str(settings.MEDIA_ROOT)+'/'+b[2]
-            print('inputLang= {} \n outputLang={} \n audioFileLink ={} \n '.format(inputLang,outputLang,audioFileLink))
+            print(row)
 
 
-            '''-----------------------------------take above var as input (inputLang,outputLang,audioFileLink) and set res var to return var---------------------------'''
+            '''-----------------------------------------------------------------write code here'''
 
 
 
